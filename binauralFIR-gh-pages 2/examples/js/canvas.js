@@ -1,53 +1,50 @@
 let compass, headingAngle, angleToNorth, bass, drum, lead;
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  compass = new Compass();
-  compass.init(compassReady);
+let childrenCircle, ctx, canvas;
+function initCanvas(path, points) {
+  canvas = document.getElementById(path)
+  canvas.width = window.innerWidth;;
+  canvas.heigh = window.innerHeight;
+  ctx = canvas.getContext('2d');
+  // childrenCircle = [new Circle()]
 
-  textAlign(CENTER);
+  window.requestAnimationFrame(function () {
+    requestCompass(points);
+  });
 }
-function compassReady() {
-  // headingAngle = compass.getHeading();
-  // bearingToNorth = compass.getBearingToNorth();
+
+function requestCompass(points) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (compass.position !== null && compass.orientation !== null) {
+    const result = compassReady();
+
+    //   // console.log(result);
+    //   //  const pin = drawPin(width*0.5, height*0.5, bearingToNorth);
+    //   // if (bass.orientation >= 180) {
+    //   //   transformToBinaural = map(bass.orientation, 360, 180, 0, 180);
+    //   // } else {
+    //   //   transformToBinaural = (-bass.orientation);
+    //   // }
+    //   // binauralFIRNode1.setPosition(transformToBinaural, 0, 1);
+    //   // text(transformToBinaural, width * 0.5, height * 0.75);
+    //   // console.log(bass.orientation);
+    //   // console.log(childrenCircle);
 
 
-  const currentPosition = { lat: compass.position.coords.latitude, lng: compass.position.coords.longitude };
-  const lat1 = 46.54281206184764; const lng1 = 6.56923874161301;
-  // const lat2 = 46.54294451066024; const lng2 = 6.569260308955235;
-  // const lat3 = 46.54255667293508; const lng3 = 6.56868284205725;
-  bass = {
-      orientation: compass.getBearingToDestination(currentPosition, { lat: lat1, lng: lng1 }),
-      // distance: calcCrow(currentPosition.lat, currentPosition.lng, lat1, lng1)
+    // childrenCircle.forEach(function(circle){
+    //   if(circle.binauralFIRNode!=null){
+    //     circle.drawInCompass(canvas.width * 0.5, canvas.height * 0.5, result.bass.orientation, "parc", result.bass.distance);
+    //     circle.soundPoint(result.bass.orientation, result.bass.distance, binauralFIRNode);
+    //   }
+    // });
+
+    //   // drawPin(ctx.width * 0.5, ctx.height * 0.5, result.bass.orientation, "parc", result.bass.distance);
+    //   // drawPin(width * 0.5, height * 0.5, drum.orientation, "work", drum.distance);
+    //   // drawPin(width * 0.5, height * 0.5, lead.orientation, "lac", lead.distance);
   }
-  // drum = {
-  //     orientation: compass.getBearingToDestination(currentPosition, { lat: lat2, lng: lng2 }),
-  //     distance: calcCrow(currentPosition.lat, currentPosition.lng, lat2, lng2)
-  // }
-  // lead = {
-  //     orientation: compass.getBearingToDestination(currentPosition, { lat: lat3, lng: lng3 }),
-  //     distance: calcCrow(currentPosition.lat, currentPosition.lng, lat3, lng3)
-  // }
+  // DEBUG INIT
+  // if(compass.position == null)
+  // requestAnimationFrame(requestCompass);
+  window.requestAnimationFrame(function () {
+    requestCompass(points);
+  });
 }
-function draw() {
-    // background(250, 40);
-    background(250);
-    if (compass.position !== null && compass.orientation !== null) {
-      compassReady();
-    //  const pin = drawPin(width*0.5, height*0.5, bearingToNorth);
-
-      // text(bearingToNorth, width*0.5, height*0.5);
-      // let transformToBinaural;
-      // if(bearingToNorth>=180){
-      //   transformToBinaural =map(bearingToNorth,360,180,0, 180);
-      // }else{
-      //   transformToBinaural=(-bearingToNorth);
-      // }
-      // text( transformToBinaural,width*0.5, height*0.75);
-
-      // console.log(bass);
-      drawPin(width * 0.5, height * 0.5, bass.orientation, 255, bass.distance);
-    //   drawPin(width * 0.5, height * 0.5, drum.orientation, 200, drum.distance);
-    //   drawPin(width * 0.5, height * 0.5, lead.orientation, 100, lead.distance);
-    }
-  
-  }

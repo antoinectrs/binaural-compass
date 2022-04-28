@@ -4,60 +4,111 @@
 <head>
     <title>Binaural FIR Example</title>
     <meta charset="utf-8" />
-    <script src="../binaural-fir.min.js"></script>
-    <script src="./snd/complete_hrtfs.js"></script>
-    <script src="./js/jquery-1.11.1.min.js"></script>
-    <script src="./js/jquery.knob.js"></script>
-    <script src="./js/compass.js"></script>
-    <script src="./js/p5.js"></script>
-    <script src="./js/sketch.js"></script>
-    <script src="./js/loca.js"></script>
-    <script src="./js/canvas.js"></script>
-    <style type="text/css">
-        /* html,
-        body {
-            margin: 0;
-            padding: 0;
-        } */
-        #defaultCanvas0 {
-            filter: blur(150px)contrast(6);
-        }
-
-        input[type=range][orient=vertical] {
-            writing-mode: bt-lr;
-            /* IE */
-            -webkit-appearance: slider-vertical;
-            /* WebKit */
-            width: 8px;
-            height: 175px;
-            padding: 0 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>Binaural Antaro</h1>
-
-    <audio id="source1" src="./snd//parc/lead.wav" controls loop></audio>
-    <audio id="source2" src="./snd//parc/perc.wav" controls loop></audio>
-    <audio id="source3" src="./snd//parc/organ.wav" controls loop></audio>
-    <div id="song1">
-        <a class="track" href="./snd//parc/organ.wav"></a>
+    <div class="parent">
+        <div class="case div1">
+            <center>
+                <input data-width="100%" data-displayInput=false type="text" data-angleOffset=180 class="vs1"
+                    data-cursor=true data-thickness=".5" data-min="-180" data-max="180" data-rotation="clockwise" />
+            </center>
+        </div>
+        <div class="case div2 active " id="reverb">
+            <p>reverb</p>
+            <div class="color hard-transition"></div>
+        </div>
+        <div class="case div3 active " id="filter">
+            <p>filter</p>
+            <div class="color hard-transition"></div>
+        </div>
+        <div class="case div4 active " id="volume">
+            <p>volume</p>
+            <div class="color hard-transition"></div>
+        </div>
+        <div class="case div5 active " id="binaural">
+            <p>binaural </p>
+            <div class="color hard-transition"></div>
+        </div>
+        <div class="case div6 ">
+            <p> </p>
+        </div>
+        <div class="case div7 active play" id="drum">
+            <p>drum</p>
+            <div class="color hard-transition"></div>
+        </div>
+        <div class="case div8 active" id="bass">
+            <p>bass</p>
+        </div>
+        <div class="case div9 active" id="lead">
+            <p>lead</p>
+        </div>
+        <div class="case div10">
+            <p id="location"> </p>
+        </div>
+        <div class="case div11">
+            <p> </p>
+        </div>
+        <div class="case div12">
+            <p> </p>
+        </div>
     </div>
+
     <center>
-        <pre> Azimuth </pre>
-        <input type="text" data-angleOffset=180 class="vs1" data-width="180" data-cursor=true data-thickness=".5"
-            data-min="-180" data-max="180" data-rotation="clockwise" />
-        <input type="text" data-angleOffset=180 class="vs2" data-width="180" data-cursor=true data-thickness=".5"
+
+        <!-- <input type="text" data-angleOffset=180 class="vs2" data-width="180" data-cursor=true data-thickness=".5"
             data-min="-180" data-max="180" data-rotation="clockwise" />
         <input type="text" data-angleOffset=180 class="vs3" data-width="180" data-cursor=true data-thickness=".5"
             data-min="-180" data-max="180" data-rotation="clockwise" />
-        <pre> Elevation </pre>
+        <pre> Elevation </pre> -->
         <!-- <input class="vs1" type="range" min="-90" max="90" step="0.5" class="vs3" orient="vertical" /> -->
         <!-- <input type="range" min="-90" max="90" step="0.5" class="vs3" orient="vertical" /> -->
     </center>
-
-
+    <!-- <button id="play" class="hidden">Play</button> -->
+    <div id="conteneur">
+        <div id="map"></div>
+    </div>
+    <canvas id="gameCanvas" width="800" height="1200"></canvas>
 </body>
+<!-- LIB -->
+<script src="../binaural-fir.min.js"></script>
+<script src="./snd/complete_hrtfs.js"></script>
+<script src="../dist/jquery-1.11.1.min.js"></script>
+<script src="../dist/jquery.knob.js"></script>
+<script src="../dist/p5.js"></script>
+<script src="../dist/compass.js"></script>
+
+<!-- MAP -->
+
+<!-- <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyDJ3JthdpfA7lktsomaNXqPXcJ05fB8cpk"></script> -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqJsl9p85sl0BxW2utDnFdQm1t0zYNMrQ" async defer></script> -->
+<!-- MAP -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+<!-- LIB -->
+<script src="./js/PARAMS.js"></script>
+
+<script src="./js/APP.js"></script>
+<script src="./js/calcul.js"></script>
+<script src="./js/loca.js"></script>
+
+<script src="./js/sample.js"></script>
+<!-- <script src="./js/loadingSample.js"></script> -->
+<script src="./js/canvas.js"></script>
+<script src="./js/circle.js"></script>
+<script src="./js/mapDebug.js"></script>
+<script src="./js/boussole.js"></script>
+<script src="./js/dom.js"></script>
 
 </html>
+<script>
+
+
+
+</script>
