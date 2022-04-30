@@ -5,6 +5,7 @@ class Sample {
             this.binauralFIRNode = null,
             this.path = path;
         hrtfs;
+        this.path=path;
         // Create an audio context
         // let audio = new (AudioContext || webkitAudioContext || mozAudioContext)();
         // if (!audio) throw 'Web audio API not supported';
@@ -51,15 +52,15 @@ class Sample {
     test() {
         console.log("hello");
     };
-    requestTrack(path, that = this) {
+    requestTrack(that = this) {
         // load sample
         let req = new XMLHttpRequest();
         req.responseType = "arraybuffer";
         console.log(that);
         req.addEventListener('load', function (event) {
+            console.log(that);
             that.createBufferFromData(req.response);
         });
-
         req.open('GET', `../examples/snd/urban/${this.path}.mp3`, true);
         req.send();
     }

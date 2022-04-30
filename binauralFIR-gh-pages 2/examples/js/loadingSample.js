@@ -36,7 +36,7 @@ function playSample(id,e, sampleRate) {
     sourceNode.start(0);
     console.log('Played sample via new AudioBufferSourceNode');
 }
-function requestTrack(path){
+function requestTrack(){
     // load sample
 let req = new XMLHttpRequest();
 req.responseType = "arraybuffer";
@@ -45,7 +45,7 @@ req.addEventListener('load', function (event) {
     createBufferFromData(req.response);
 });
 
-req.open('GET', `../examples/snd/urban/${path}.mp3`, true);
+req.open('GET', `../examples/snd/urban/${this.path}.mp3`, true);
 req.send();
 }
 function hrtf(sampleRate){

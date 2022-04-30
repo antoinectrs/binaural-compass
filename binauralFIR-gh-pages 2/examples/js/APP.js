@@ -1,18 +1,24 @@
 window.onload = function () {
-
-
     // ---------- LOAD SOUND ----------
     // requestTrack("master");
     let points = [
         {
-            "sample": new Sample("master"),
+            "sample": new Sample("bass"),
+            "graphic": new Circle()
+        },
+        {
+            "sample": new Sample("drum"),
+            "graphic": new Circle()
+        },
+        {
+            "sample": new Sample("lead"),
             "graphic": new Circle()
         }
     ];
-    points.forEach(function (point) {
-        point.sample.requestTrack("master");
-        document.querySelector('.play').addEventListener('click', point.sample.playSample.bind(event, 0), false);
-    });
+    // points.forEach(function (point) {
+        points[0].sample.requestTrack();
+        document.querySelector('.play').addEventListener('click', points[0].sample.playSample.bind(event, 0), false);
+    // });
     // --------- /LOAD SOUND ----------
 
     // ---------- LOAD POSI ----------
@@ -50,13 +56,5 @@ window.onload = function () {
     clicClass(".active", "on")
 
     // --------- /DOM ----------
-    initCanvas('gameCanvas',points);
-    // childrenCircle.forEach(circle => circle.draw(ctx))
-    // createCanvas(windowWidth, windowHeight);
-    // const callback = window.requestAnimationFrame(drawPoint);       
-    // drawPoint() 
-    // console.log(compass.position);
-    // if (compass.position !== null && compass.orientation !== null) {
-    //     drawMap(compass.position.coords.latitude, compass.position.coords.longitude)
-    // }
+    initCanvas('gameCanvas', points);
 }
