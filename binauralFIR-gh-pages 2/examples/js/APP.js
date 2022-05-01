@@ -1,6 +1,5 @@
 window.onload = function () {
     // ---------- LOAD SOUND ----------
-    // requestTrack("master");
     let points = [
         {
             "sample": new Sample("bass"),
@@ -15,18 +14,23 @@ window.onload = function () {
             "graphic": new Circle()
         }
     ];
-    // points.forEach(function (point) {
-        points[0].sample.requestTrack();
-        document.querySelector('.play').addEventListener('click', points[0].sample.playSample.bind(event, 0), false);
-    // });
+    document.querySelector('#bass').addEventListener('click', syncPlay, false);
+    function syncPlay() {
+        console.log(points[0].sample.audio.currentTime);
+    }
+    points.forEach(function (point) {
+        point.sample.requestTrack();
+    });
+    document.querySelector('#drum').addEventListener('click', points[0].sample.playSample.bind(event, 0), false);
+    document.querySelector('#bass').addEventListener('click', points[1].sample.playSample.bind(event, 0), false);
+    document.querySelector('#lead').addEventListener('click', points[2].sample.playSample.bind(event, 0), false);
+
     // --------- /LOAD SOUND ----------
 
     // ---------- LOAD POSI ----------
     compass = new Compass();
     compass.init(compassReady);
     // ---------- LOAD MAP ----------
-
-
     let myMap = null;
     navigator.geolocation.watchPosition(pos => {
         if (myMap == null) {

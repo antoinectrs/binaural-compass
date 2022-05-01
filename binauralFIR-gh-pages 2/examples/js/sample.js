@@ -5,7 +5,8 @@ class Sample {
             this.binauralFIRNode = null,
             this.path = path;
         hrtfs;
-        this.path=path;
+        this.path = path;
+        this.decay= 0;
         // Create an audio context
         // let audio = new (AudioContext || webkitAudioContext || mozAudioContext)();
         // if (!audio) throw 'Web audio API not supported';
@@ -49,9 +50,6 @@ class Sample {
         sourceNode.start(0);
         console.log('Played sample via new AudioBufferSourceNode');
     }
-    test() {
-        console.log("hello");
-    };
     requestTrack(that = this) {
         // load sample
         let req = new XMLHttpRequest();
