@@ -2,8 +2,9 @@ window.onload = function () {
     // ---------- LOAD SOUND ----------
     PARAMS.points = [
         {
-            "sample": new Sample("master",0),
-            "graphic": new Circle()
+            "sample": new Sample("drum",0),
+            "graphic": new Circle(),
+            "space": new Space(0),
         },
         // {
         //     "sample": new Sample("drum"),

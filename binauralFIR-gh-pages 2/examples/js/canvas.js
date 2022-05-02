@@ -15,26 +15,41 @@ function initCanvas(path, points) {
 function requestCompass(points) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (compass.position !== null && compass.orientation !== null) {
-    const result = compassReady();
-   
+    // const result = compassReady();
+
+
+
+
+
+    //check 3 points
+    PARAMS.points.forEach((event) => {
+      //check if sound is active
+      if (event.sample.binauralFIRNode != null) {
+       
+        console.log(event.space.compassReady());
+        // let resultMap;
+        // if (result.bass.orientation >= 180) {
+        //   resultMap = mapRange(result.bass.orientation, 360, 180, 0, 180);
+        // } else {
+        //   resultMap = (-result.bass.orientation);
+        // }
+        // event.sample.binauralFIRNode.setPosition(resultMap, 0, 1)
+      }
+    });
+
+
+
+
+
+
+
+
     //   // console.log(result);
     //   //  const pin = drawPin(width*0.5, height*0.5, bearingToNorth);
 
-    let resultMap;
-      if (result.bass.orientation >= 180) {
-        resultMap = mapRange(result.bass.orientation, 360, 180, 0, 180);
-      } else {
-        resultMap = (-result.bass.orientation);
-      }
-      if( PARAMS.points[0].sample.binauralFIRNode!= null){
-        PARAMS.points.forEach((event) => {
-              event.sample.binauralFIRNode.setPosition(resultMap, 0, 1)
-          //     // this.createBufferFromData(req.response);
-            });
-      }
-      console.log(  PARAMS.points[0].sample.binauralFIRNode);
- 
-      // console.log(result.bass.orientation,"    ",resultMap);
+
+
+    // console.log(result.bass.orientation,"    ",resultMap);
     //   // binauralFIRNode1.setPosition(transformToBinaural, 0, 1);
     //   // text(transformToBinaural, width * 0.5, height * 0.75);
     //   // console.log(bass.orientation);
