@@ -2,7 +2,7 @@ window.onload = function () {
     // ---------- LOAD SOUND ----------
     let points = [
         {
-            "sample": new Sample("organ"),
+            "sample": new Sample("organ",0),
             "graphic": new Circle()
         },
         // {
@@ -22,10 +22,12 @@ window.onload = function () {
         // points[0].sample.audio.currentTime = 30;
         // points[1].sample.playSample.bind(event, 30);
     }
-    points.forEach(function (point) {
+    points.forEach((point) => {
         point.sample.requestTrack();
     });
-    document.querySelector('#drum').addEventListener('click', points[0].sample.playSample.bind(event, 0), false);
+    document.querySelector('#drum').addEventListener('click', () => {    
+        points[0].sample.playSample(0)
+    }, false);
     // document.querySelector('#bass').addEventListener('click', points[1].sample.playSample.bind(event, 0), false);
     // document.querySelector('#lead').addEventListener('click', points[2].sample.playSample.bind(event, 0), false);
 

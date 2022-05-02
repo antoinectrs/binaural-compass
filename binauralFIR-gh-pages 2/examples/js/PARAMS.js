@@ -1,6 +1,6 @@
 let PARAMS = {
     myLocation: null,
-    sampleBuffer: [],
+    sampleBuffer: [null,null,null], //none opti
     binauralFIRNode: null,
     bubble: [
         [
