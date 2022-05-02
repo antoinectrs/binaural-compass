@@ -2,28 +2,32 @@ window.onload = function () {
     // ---------- LOAD SOUND ----------
     let points = [
         {
-            "sample": new Sample("bass"),
+            "sample": new Sample("organ"),
             "graphic": new Circle()
         },
-        {
-            "sample": new Sample("drum"),
-            "graphic": new Circle()
-        },
-        {
-            "sample": new Sample("lead"),
-            "graphic": new Circle()
-        }
+        // {
+        //     "sample": new Sample("drum"),
+          //     "graphic": new Circle()
+        // },
+        // {
+        //     "sample": new Sample("lead"),
+        //     "graphic": new Circle()
+        // }
     ];
     document.querySelector('#bass').addEventListener('click', syncPlay, false);
     function syncPlay() {
-        console.log(points[0].sample.audio.currentTime);
+        // console.log(points[0].sample.audio.currentTime);
+        const timeDecay = points[0].sample.audio.currentTime;
+        console.log(timeDecay);
+        // points[0].sample.audio.currentTime = 30;
+        // points[1].sample.playSample.bind(event, 30);
     }
     points.forEach(function (point) {
         point.sample.requestTrack();
     });
     document.querySelector('#drum').addEventListener('click', points[0].sample.playSample.bind(event, 0), false);
-    document.querySelector('#bass').addEventListener('click', points[1].sample.playSample.bind(event, 0), false);
-    document.querySelector('#lead').addEventListener('click', points[2].sample.playSample.bind(event, 0), false);
+    // document.querySelector('#bass').addEventListener('click', points[1].sample.playSample.bind(event, 0), false);
+    // document.querySelector('#lead').addEventListener('click', points[2].sample.playSample.bind(event, 0), false);
 
     // --------- /LOAD SOUND ----------
 

@@ -5,10 +5,10 @@ function clicClass(node, add) {
     });
 }
 $(".vs1").val(0);
-//Listeners of the knobs
+// //Listeners of the knobs
 $(".vs1").knob({
     'change': function (v) {
-        binauralFIRNode.setPosition(v, 0, 1);
+        // binauralFIRNode.setPosition(v, 0, 1);
     }
 });
 
