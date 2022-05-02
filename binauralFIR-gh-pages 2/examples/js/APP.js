@@ -1,6 +1,6 @@
 window.onload = function () {
     // ---------- LOAD SOUND ----------
-    let points = [
+    PARAMS.points = [
         {
             "sample": new Sample("organ",0),
             "graphic": new Circle()
@@ -17,16 +17,16 @@ window.onload = function () {
     document.querySelector('#bass').addEventListener('click', syncPlay, false);
     function syncPlay() {
         // console.log(points[0].sample.audio.currentTime);
-        const timeDecay = points[0].sample.audio.currentTime;
+        const timeDecay =   PARAMS.points[0].sample.audio.currentTime;
         console.log(timeDecay);
         // points[0].sample.audio.currentTime = 30;
         // points[1].sample.playSample.bind(event, 30);
     }
-    points.forEach((point) => {
+    PARAMS.points.forEach((point) => {
         point.sample.requestTrack();
     });
     document.querySelector('#drum').addEventListener('click', () => {    
-        points[0].sample.playSample(0)
+        PARAMS.points[0].sample.playSample(0)
     }, false);
     // document.querySelector('#bass').addEventListener('click', points[1].sample.playSample.bind(event, 0), false);
     // document.querySelector('#lead').addEventListener('click', points[2].sample.playSample.bind(event, 0), false);
@@ -66,5 +66,5 @@ window.onload = function () {
     clicClass(".active", "on")
 
     // --------- /DOM ----------
-    initCanvas('gameCanvas', points);
+    initCanvas('gameCanvas', PARAMS.points);
 }
