@@ -25,7 +25,6 @@ class Sample {
     }
 
     // Create a new source node and play it
-    // playSample(id, e, sampleRate) {
     playSample(decay, e, sampleRate) {
         if (sampleRate === undefined) sampleRate = 1;
         this.hrtf(sampleRate);
@@ -57,7 +56,7 @@ class Sample {
         req.addEventListener('load', (event) => {
             this.createBufferFromData(req.response);
         });
-        req.open('GET', `../examples/snd/parc/${this.path}.wav`, true);
+        req.open('GET', `../examples/snd/urban/${this.path}.mp3`, true);
         req.send();
     }
 
