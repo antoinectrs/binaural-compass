@@ -9,12 +9,12 @@ window.onload = function () {
         {
             "sample": new Sample("bass"),
             "graphic": new Circle(),
-            "space": new Space(0),
+            "space": new Space(1),
         },
         {
             "sample": new Sample("lead"),
             "graphic": new Circle(),
-            "space": new Space(0),
+            "space": new Space(2),
         }
     ];
     document.querySelector('#bass').addEventListener('click', () => { PARAMS.points[1].sample.playSample(maxIs(mapArray(PARAMS.points))); });
@@ -24,9 +24,6 @@ window.onload = function () {
     PARAMS.points.forEach((point) => {
         point.sample.requestTrack();
     });
-    // document.querySelector('#bass').addEventListener('click', points[1].sample.playSample.bind(event, 0), false);
-    // document.querySelector('#lead').addEventListener('click', points[2].sample.playSample.bind(event, 0), false);
-
     // --------- /LOAD SOUND ----------
 
     // ---------- LOAD POSI ----------

@@ -5,12 +5,10 @@ function clicClass(node, add) {
     });
 }
 $(".vs1").val(0);
+$(".vs2").val(0);
+$(".vs3").val(0);
 // //Listeners of the knobs
-$(".vs1").knob({
-    'change': function (v) {
-        // console.log(  PARAMS.points[0].sample.binauralFIRNode);
-        PARAMS.points[0].sample.binauralFIRNode.setPosition(v, 0, 1)
-        // binauralFIRNode.setPosition(v, 0, 1);
-    }
-});
+$(".vs1").knob({'change': function (v) {PARAMS.points[0].sample.binauralFIRNode.setPosition(v, 0, 1)}});
+$(".vs2").knob({'change': function (v) {PARAMS.points[1].sample.binauralFIRNode.setPosition(v, 0, 1)}});
+$(".vs3").knob({'change': function (v) {PARAMS.points[2].sample.binauralFIRNode.setPosition(v, 0, 1)}});
 
