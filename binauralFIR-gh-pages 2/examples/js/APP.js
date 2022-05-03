@@ -17,23 +17,13 @@ window.onload = function () {
             "space": new Space(0),
         }
     ];
-    document.querySelector('#bass').addEventListener('click',  () => {    
-        const timeDecay1 =   PARAMS.points[0].sample.audio.currentTime;
-        PARAMS.points[1].sample.playSample(timeDecay1);
-        console.log(timeDecay1);
-    }, false);
-    document.querySelector('#lead').addEventListener('click',  () => {    
-        const timeDecay1 =   PARAMS.points[0].sample.audio.currentTime;
-        PARAMS.points[2].sample.playSample(timeDecay1)
-        console.log(timeDecay1);
-    }, false);
+    document.querySelector('#bass').addEventListener('click', () => { PARAMS.points[1].sample.playSample(maxIs(mapArray(PARAMS.points))); });
+    document.querySelector('#lead').addEventListener('click', () => { PARAMS.points[2].sample.playSample(maxIs(mapArray(PARAMS.points))) });
+    document.querySelector('#drum').addEventListener('click', () => { PARAMS.points[0].sample.playSample(maxIs(mapArray(PARAMS.points))) });
 
     PARAMS.points.forEach((point) => {
         point.sample.requestTrack();
     });
-    document.querySelector('#drum').addEventListener('click', () => {    
-        PARAMS.points[0].sample.playSample(0)
-    }, false);
     // document.querySelector('#bass').addEventListener('click', points[1].sample.playSample.bind(event, 0), false);
     // document.querySelector('#lead').addEventListener('click', points[2].sample.playSample.bind(event, 0), false);
 

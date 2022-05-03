@@ -127,6 +127,12 @@
     #drum.on .color {
         background: #00d4ff
     }
+    #bass.on .color {
+        background: #0091ff
+    }
+    #lead.on .color {
+        background: #0051ff
+    }
 
     .on p {
         color: white;

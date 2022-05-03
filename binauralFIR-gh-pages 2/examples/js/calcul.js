@@ -13,3 +13,14 @@ function degrees_to_radians(degrees)
   var pi = Math.PI;
   return degrees * (pi/180);
 }
+function minIs(array){
+  return Math.min(...array);
+}
+function maxIs(array){
+  return Math.max(...array);
+}
+function mapArray(arr) {
+  return arr.map(function (el) {
+      return el.sample.audio.currentTime;
+  });
+};
