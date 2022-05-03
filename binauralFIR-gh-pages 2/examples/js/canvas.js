@@ -5,35 +5,19 @@ function initCanvas(path, points) {
   canvas.width = window.innerWidth;;
   canvas.heigh = window.innerHeight;
   ctx = canvas.getContext('2d');
-  // childrenCircle = [new Circle()]
 
   window.requestAnimationFrame(function () {
     requestCompass(points);
   });
 }
-
 function requestCompass(points) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   if (compass.position !== null && compass.orientation !== null) {
-    // const result = compassReady();
-
-
-
-
-
-    //check 3 points
     PARAMS.points.forEach((event) => {
-      //check if sound is active
       if (event.sample.binauralFIRNode != null) {
-       
-        console.log(event.space.compassReady());
-        // let resultMap;
-        // if (result.bass.orientation >= 180) {
-        //   resultMap = mapRange(result.bass.orientation, 360, 180, 0, 180);
-        // } else {
-        //   resultMap = (-result.bass.orientation);
-        // }
-        // event.sample.binauralFIRNode.setPosition(resultMap, 0, 1)
+        const orResult = event.space.compassReady();
+        event.sample.binauralFIRNode.setPosition(orResult.audio, 0, 1);
+        event.graphic.drawInCompass(canvas.width * 0.5, canvas.height * 0.5, orResult.graphic, "parc", null);
       }
     });
 

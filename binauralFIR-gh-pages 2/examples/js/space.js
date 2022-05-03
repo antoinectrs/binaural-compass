@@ -16,7 +16,10 @@ class Space {
             deg: compass.getBearingToDestination(currentPosition, { lat: this.destination.lat, lng: this.destination.lng }),
             // distance: calcCrow(currentPosition.lat, currentPosition.lng, lat1, lng1)
         }
-        return this.convertToBinau(this.orientation.deg)
+        return {
+            audio:this.convertToBinau(this.orientation.deg),
+            graphic:this.orientation.deg,
+        }
         // return this.orientation;
     }
     convertToBinau(result,output){
