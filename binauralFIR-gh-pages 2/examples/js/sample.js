@@ -1,12 +1,11 @@
 
 class Sample {
-    constructor(path,id) {
+    constructor(path) {
         this.audio = new (AudioContext || webkitAudioContext || mozAudioContext)(),
             this.binauralFIRNode = null,
             this.path = path;
         this.hrtfs = hrtfs;
-        this.path = path;
-        this.decay = 0;
+        // this.decay = 0;
         this.sampleBuffer; // none functional now 
     }
     // Decode the raw sample data into a AudioBuffer
@@ -44,10 +43,11 @@ class Sample {
         this.binauralFIRNode.setPosition(90, 10, 1);
         sourceNode.loop = true;
         // console.log(decay);
-        // this.audio.currentTime = decay; 
-        sourceNode.start(0);
-        console.log(sourceNode.buffer);
-        console.log('Played sample via new AudioBufferSourceNode');
+      
+        // console.log(decay);
+        sourceNode.start(0,decay);
+        // console.log(sourceNode.buffer);
+        // console.log('Played sample via new AudioBufferSourceNode');
     }
     requestTrack() {
         // load sample

@@ -2,27 +2,32 @@ window.onload = function () {
     // ---------- LOAD SOUND ----------
     PARAMS.points = [
         {
-            "sample": new Sample("drum",0),
+            "sample": new Sample("drum"),
             "graphic": new Circle(),
             "space": new Space(0),
         },
-        // {
-        //     "sample": new Sample("drum"),
-          //     "graphic": new Circle()
-        // },
-        // {
-        //     "sample": new Sample("lead"),
-        //     "graphic": new Circle()
-        // }
+        {
+            "sample": new Sample("bass"),
+            "graphic": new Circle(),
+            "space": new Space(0),
+        },
+        {
+            "sample": new Sample("lead"),
+            "graphic": new Circle(),
+            "space": new Space(0),
+        }
     ];
-    document.querySelector('#bass').addEventListener('click', syncPlay, false);
-    function syncPlay() {
-        // console.log(points[0].sample.audio.currentTime);
-        const timeDecay =   PARAMS.points[0].sample.audio.currentTime;
-        console.log(timeDecay);
-        // points[0].sample.audio.currentTime = 30;
-        // points[1].sample.playSample.bind(event, 30);
-    }
+    document.querySelector('#bass').addEventListener('click',  () => {    
+        const timeDecay1 =   PARAMS.points[0].sample.audio.currentTime;
+        PARAMS.points[1].sample.playSample(timeDecay1);
+        console.log(timeDecay1);
+    }, false);
+    document.querySelector('#lead').addEventListener('click',  () => {    
+        const timeDecay1 =   PARAMS.points[0].sample.audio.currentTime;
+        PARAMS.points[2].sample.playSample(timeDecay1)
+        console.log(timeDecay1);
+    }, false);
+
     PARAMS.points.forEach((point) => {
         point.sample.requestTrack();
     });
