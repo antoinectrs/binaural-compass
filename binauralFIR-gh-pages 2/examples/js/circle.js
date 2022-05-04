@@ -11,7 +11,8 @@ class Circle {
         this.radius = Number(radius)
         this.fillColor = fillColor
         this.strokeColor = strokeColor
-        this.strokeWidth = strokeWidth
+        this.strokeWidth = strokeWidth;
+        this.distanceMap = 0;
     }
     drawInCompass(x, y, pinAngle, intensity, distance = 200) {
         ctx.save();
@@ -35,13 +36,17 @@ class Circle {
         ctx.stroke()
         ctx.restore();
     }
+    convertToCanvas(value,threshold=0.1){
+        return mapRange(value, 0, threshold,0,canvas.width);
+    }
     soundPoint(orientation,distance){
         binauralFIRNode.setPosition(orientation, 0, 1);
     }
     distanceMap(value,threeshold=500){
         // const distanceMap= mapRange(value, 0, 0.05, 0, canvas.width);
-        const distanceMap= mapRange(distance, 0, threeshold, 0, canvas.width);
-        return distanceMap;
+        this.distanceMap= mapRange(distance, 0, threeshold, 0, canvas.width);
+        console.log(distanceMap);
+        // return distanceMap;
     }
         // distance = mapRange(distance, 0, 500, 0, canvas.width);
 }

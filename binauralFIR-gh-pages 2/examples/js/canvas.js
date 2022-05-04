@@ -17,7 +17,7 @@ function requestCompass(points) {
       if (event.sample.binauralFIRNode != null) {
         const orResult = event.space.compassReady();
         event.sample.binauralFIRNode.setPosition(orResult.audio, 0, 1);
-        event.graphic.drawInCompass(canvas.width * 0.5, canvas.height * 0.5, orResult.graphic, "parc", null);
+        event.graphic.drawInCompass(canvas.width * 0.5, canvas.height * 0.5, orResult.graphic, "parc");
       }
     });
 

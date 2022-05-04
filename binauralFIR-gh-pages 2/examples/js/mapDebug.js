@@ -11,8 +11,6 @@ function initMap(pos, lat, lon, zoom = 20) {
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoiYW50b2luZTk4IiwiYSI6ImNsMGprazdncDAxYzYzZWxhbzRlcWk2NDkifQ.JM4Xgke091LLntRvk9UbrA'
     }).addTo(MAP);
-
-
     return MAP
 }
 

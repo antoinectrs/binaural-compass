@@ -32,19 +32,27 @@ window.onload = function () {
     // ---------- LOAD MAP ----------
     let myMap = null;
     navigator.geolocation.watchPosition(pos => {
+
         if (myMap == null) {
+            initMap
             myMap = initMap(pos);
+            PARAMS.points.forEach(function (element) {
+                // element.space.calcOffset(pos.coords.latitude, pos.coords.longitude)
+                const space = element.space.calcOff(pos.coords.latitude, pos.coords.longitude);   
+                element.graphic.convertToCanvas(space);
+            })
             PARAMS.bubble.forEach(function (element) {
                 addPin(element[0], myMap);
-                element.distBeMe = calcCrow(element[0].lat,
-                    element[0].lng,
-                    pos.coords.latitude,
-                    pos.coords.longitude);
+                // element.distBeMe = calcCrow(element[0].lat,
+                //     element[0].lng,
+                //     pos.coords.latitude,
+                //     pos.coords.longitude);
             });
             // initInteractionMap(myMap);
         } else {
             panMap(pos, myMap);
             let result = PARAMS.bubble.forEach(function (element) {
+
                 addPin(element[0], myMap);
                 element.distBeMe = calcCrow(element[0].lat,
                     element[0].lng,
@@ -60,4 +68,7 @@ window.onload = function () {
 
     // --------- /DOM ----------
     initCanvas('gameCanvas', PARAMS.points);
+    function m(){
+        return
+    }
 }
