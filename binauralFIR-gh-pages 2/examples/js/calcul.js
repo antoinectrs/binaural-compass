@@ -45,29 +45,30 @@ async function isLerping(value) {
   // expected output: "resolved"
 }
 
-function scaryClown(value, index) {
+function scaryClown(newValue, oldValue, index = 0) {
   return new Promise(resolve => {
-
-    let lerpResult = 0
+    // let lerpResult = 0;
 
     const draw = () => {
-      console.log(lerpResult);
-      if (lerpResult >= 1) {
-        resolve(value)
+     
+      if (index >= 0.99) {
+        console.log(index);
+        PARAMS.mouseTest = newValue;
+        resolve(newValue)
       } else {
-        lerpResult += 0.1
+        index += 0.01;
+        const softValue =  myLerp(oldValue, newValue, index);
+        console.log(softValue);
         requestAnimationFrame(() => draw());
       }
     }
-
     draw()
   });
 }
 
-
-async function msg(value) {
-
-  const msg = await scaryClown(value, index = 0);
+async function msg(newValue, oldValue) {
+  oldValue = PARAMS.mouseTest;
+  const msg = await scaryClown(oldValue, newValue);
   console.log('Message:', msg);
 }
 
