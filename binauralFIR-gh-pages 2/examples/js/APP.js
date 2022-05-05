@@ -32,9 +32,8 @@ window.onload = function () {
     // ---------- LOAD MAP ----------
     let myMap = null;
     navigator.geolocation.watchPosition(pos => {
-
         if (myMap == null) {
-            initMap
+            // initMap
             myMap = initMap(pos);
             PARAMS.points.forEach(function (element) {
                 // element.space.calcOffset(pos.coords.latitude, pos.coords.longitude)
@@ -51,6 +50,11 @@ window.onload = function () {
             // initInteractionMap(myMap);
         } else {
             panMap(pos, myMap);
+              PARAMS.points.forEach(function (element) {
+                // element.space.calcOffset(pos.coords.latitude, pos.coords.longitude)
+                const space = element.space.calcOff(pos.coords.latitude, pos.coords.longitude,true,element);   
+                element.graphic.convertToCanvas(space);
+            })
             let result = PARAMS.bubble.forEach(function (element) {
 
                 addPin(element[0], myMap);
