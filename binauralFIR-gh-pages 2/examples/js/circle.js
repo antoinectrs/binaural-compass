@@ -13,10 +13,16 @@ class Circle {
         this.strokeColor = strokeColor
         this.strokeWidth = strokeWidth;
         this.distanceMap = 0;
+        this.centerWidth;
+        this.centerHeight;
     }
-    drawInCompass(x, y, pinAngle, intensity, distance = 200) {
+    asignCenter(width,height){
+        this.centerWidth =width * 0.5;
+        this.centerHeight = height * 0.5;   
+    }
+    drawInCompass(pinAngle, intensity, distance = 200) {
         ctx.save();
-        ctx.translate(x, y);
+        ctx.translate(this.centerWidth, this.centerHeight);
         // 1. normalize for p5: p5 handles 0 degrees at +90deg from the web browser
         // ctx.rotate(-90)
         // 2. rotate accordingly
@@ -30,23 +36,17 @@ class Circle {
         // x, y, radius, startAngle, endAngle, antiClockwise = false by default
         ctx.beginPath()
         // ctx.strokeStyle = strokeColor
-        ctx.arc(x, y, 300, 0, 2 * Math.PI, false) // full circle
+        console.log(PARAMS.mouseTest.x);
+        ctx.arc(PARAMS.mouseTest.x, PARAMS.mouseTest.x, 300, 0, 2 * Math.PI, false) // full circle
         // draw the path to screen
         ctx.fill()
         ctx.stroke()
         ctx.restore();
     }
     convertToCanvas(value,threshold=0.1){
-        return mapRange(value, 0, threshold,0,canvas.width);
+        this.distance =  mapRange(value, 0, threshold,0,canvas.width);
     }
     soundPoint(orientation,distance){
         binauralFIRNode.setPosition(orientation, 0, 1);
     }
-    distanceMap(value,threeshold=500){
-        // const distanceMap= mapRange(value, 0, 0.05, 0, canvas.width);
-        this.distanceMap= mapRange(distance, 0, threeshold, 0, canvas.width);
-        console.log(distanceMap);
-        // return distanceMap;
-    }
-        // distance = mapRange(distance, 0, 500, 0, canvas.width);
 }

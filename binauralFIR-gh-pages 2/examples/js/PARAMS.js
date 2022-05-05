@@ -2,6 +2,7 @@ let PARAMS = {
     myLocation: null,
     points:null,
     binauralFIRNode: null,
+    mouseTest:0,
     bubble: [
         [
             coords = { lat: 46.537546230038906, lng: 6.587952153640801 },
