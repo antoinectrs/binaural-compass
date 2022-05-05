@@ -38,7 +38,7 @@ window.onload = function () {
             myMap = initMap(pos);
             PARAMS.points.forEach(function (element) {
                 // element.space.calcOffset(pos.coords.latitude, pos.coords.longitude)
-                const space = element.space.calcOff(pos.coords.latitude, pos.coords.longitude,false);   
+                const space = element.space.calcOff(pos.coords.latitude, pos.coords.longitude,false,element);   
                 element.graphic.convertToCanvas(space);
             })
             PARAMS.bubble.forEach(function (element) {

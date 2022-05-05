@@ -16,9 +16,9 @@ class Circle {
         this.centerWidth;
         this.centerHeight;
     }
-    asignCenter(width,height){
-        this.centerWidth =width * 0.5;
-        this.centerHeight = height * 0.5;   
+    asignCenter(width, height) {
+        this.centerWidth = width * 0.5;
+        this.centerHeight = height * 0.5;
     }
     drawInCompass(pinAngle, intensity, distance = 200) {
         ctx.save();
@@ -36,18 +36,17 @@ class Circle {
         // x, y, radius, startAngle, endAngle, antiClockwise = false by default
         ctx.beginPath()
         // ctx.strokeStyle = strokeColor
-        console.log(PARAMS.mouseTest);
-        ctx.arc(PARAMS.mouseTest, PARAMS.mouseTest , 300, 0, 2 * Math.PI, false) // full circle
+        // console.log(PARAMS.mouseTest);
+        ctx.arc(this.distanceMap, this.distanceMap, 300, 0, 2 * Math.PI, false) // full circle
         // draw the path to screen
         ctx.fill()
         ctx.stroke()
         ctx.restore();
     }
-    convertToCanvas(value,threshold=0.1){
-        this.distance =  mapRange(value, 0, threshold,0,canvas.width);
-        // this.msg(this.distance)
+    convertToCanvas(value, threshold = 0.1) {
+        this.distanceMap = mapRange(value, 0, threshold, 0, canvas.width);
     }
-    soundPoint(orientation,distance){
+    soundPoint(orientation, distance) {
         binauralFIRNode.setPosition(orientation, 0, 1);
     }
 }

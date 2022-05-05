@@ -9,7 +9,8 @@ class Space {
             lat: PARAMS.bubble[id][0].lat, lng: PARAMS.bubble[id][0].lng,
         }
         this.orientation = null;
-        this.offset = null;
+        this.offset = 0;
+        this.thresold = 0.001;
     }
     compassReady(currentPosition) {
         currentPosition = { lat: compass.position.coords.latitude, lng: compass.position.coords.longitude };
@@ -23,7 +24,7 @@ class Space {
         }
         // return this.orientation;
     }
-    calcOff(lat1, lon1,init, lat2 = this.destination.lat, lon2 = this.destination.lng) {
+    calcOff(lat1, lon1, init, globalObject, lat2 = this.destination.lat, lon2 = this.destination.lng) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;
         }
@@ -40,7 +41,7 @@ class Space {
             dist = dist * 180 / Math.PI;
             dist = dist * 60 * 1.1515;
             if (init == false) {
-                this.msg(dist)
+                this.msg(dist, globalObject)
             }
             else { this.offset = dist };
             return dist;
@@ -92,27 +93,28 @@ class Space {
     //         return dist;
     //     }
     // }
-    softValue(oldValue, newValue, index = 0) {
+    softValue(newValue, globalObject, oldValue, index = 0) {
         return new Promise(resolve => {
             const draw = () => {
-                console.log(this.offset);
+               let graphicTarget = globalObject.graphic;
                 if (index >= 0.99) {
-                    this.offset = newValue;
+                    graphicTarget.convertToCanvas(newValue)
+                    // graphicTarget = newValue;
                     resolve("the new value " + newValue)
                 } else {
-                    index += 0.01;
-                    this.offset = myLerp(oldValue, newValue, index);
+                    index += this.thresold;
+                    const lerpResult= myLerp(oldValue, newValue, index);
+                    graphicTarget.convertToCanvas(lerpResult)
                     requestAnimationFrame(() => draw());
                 }
+                console.log(graphicTarget.distanceMap);
             }
             draw()
         });
     }
-    test(){
-        console.log("hello");
-    }
-    async msg(newValue, oldValue = this.offset) {
-        const msg = await this.softValue(oldValue, newValue);
+    async msg(newValue, globalObject, oldValue = this.offset) {
+        // const msg = await this.softValue(oldValue, newValue, globalObject);
+        const msg = await this.softValue(newValue, globalObject, oldValue);
         console.log('Message:', msg);
     }
 }
