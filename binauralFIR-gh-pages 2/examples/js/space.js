@@ -10,9 +10,10 @@ class Space {
         }
         this.orientation = null;
         this.offset = 0;
-        this.thresold = 0.001;
+        this.thresold = 0.01;
     }
     compassReady(currentPosition) {
+        console.log(compass.position.coords.latitude);
         currentPosition = { lat: compass.position.coords.latitude, lng: compass.position.coords.longitude };
         this.orientation = {
             deg: compass.getBearingToDestination(currentPosition, { lat: this.destination.lat, lng: this.destination.lng }),
@@ -107,7 +108,7 @@ class Space {
                     graphicTarget.convertToCanvas(lerpResult)
                     requestAnimationFrame(() => draw());
                 }
-                console.log(graphicTarget.distanceMap);
+                // console.log(graphicTarget.distanceMap);
             }
             draw()
         });
