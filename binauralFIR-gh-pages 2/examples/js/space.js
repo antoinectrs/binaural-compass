@@ -23,7 +23,7 @@ class Space {
         }
         // return this.orientation;
     }
-    calcOff(lat1, lon1, lat2 = this.destination.lat, lon2 = this.destination.lng) {
+    calcOff(lat1, lon1,init, lat2 = this.destination.lat, lon2 = this.destination.lng) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;
         }
@@ -39,8 +39,10 @@ class Space {
             dist = Math.acos(dist);
             dist = dist * 180 / Math.PI;
             dist = dist * 60 * 1.1515;
-            // this.offset = dist;
-        //    console.log();
+            if (init == false) {
+                this.msg(dist)
+            }
+            else { this.offset = dist };
             return dist;
         }
     }
@@ -69,23 +71,48 @@ class Space {
         }
         return checkColor;
     }
-    calcCrow(lat1, lon1, lat2, lon2) {
-        if ((lat1 == lat2) && (lon1 == lon2)) {
-            return 0;
-        }
-        else {
-            var radlat1 = Math.PI * lat1 / 180;
-            var radlat2 = Math.PI * lat2 / 180;
-            var theta = lon1 - lon2;
-            var radtheta = Math.PI * theta / 180;
-            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-            if (dist > 1) {
-                dist = 1;
+    // calcCrow(lat1, lon1, lat2, lon2) {
+    //     if ((lat1 == lat2) && (lon1 == lon2)) {
+    //         return 0;
+    //     }
+    //     else {
+    //         var radlat1 = Math.PI * lat1 / 180;
+    //         var radlat2 = Math.PI * lat2 / 180;
+    //         var theta = lon1 - lon2;
+    //         var radtheta = Math.PI * theta / 180;
+    //         var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+    //         if (dist > 1) {
+    //             dist = 1;
+    //         }
+    //         dist = Math.acos(dist);
+    //         dist = dist * 180 / Math.PI;
+    //         dist = dist * 60 * 1.1515;
+
+
+    //         return dist;
+    //     }
+    // }
+    softValue(oldValue, newValue, index = 0) {
+        return new Promise(resolve => {
+            const draw = () => {
+                console.log(this.offset);
+                if (index >= 0.99) {
+                    this.offset = newValue;
+                    resolve("the new value " + newValue)
+                } else {
+                    index += 0.01;
+                    this.offset = myLerp(oldValue, newValue, index);
+                    requestAnimationFrame(() => draw());
+                }
             }
-            dist = Math.acos(dist);
-            dist = dist * 180 / Math.PI;
-            dist = dist * 60 * 1.1515;
-            return dist;
-        }
+            draw()
+        });
+    }
+    test(){
+        console.log("hello");
+    }
+    async msg(newValue, oldValue = this.offset) {
+        const msg = await this.softValue(oldValue, newValue);
+        console.log('Message:', msg);
     }
 }

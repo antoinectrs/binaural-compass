@@ -38,7 +38,7 @@ window.onload = function () {
             myMap = initMap(pos);
             PARAMS.points.forEach(function (element) {
                 // element.space.calcOffset(pos.coords.latitude, pos.coords.longitude)
-                const space = element.space.calcOff(pos.coords.latitude, pos.coords.longitude);   
+                const space = element.space.calcOff(pos.coords.latitude, pos.coords.longitude,false);   
                 element.graphic.convertToCanvas(space);
             })
             PARAMS.bubble.forEach(function (element) {
@@ -54,10 +54,10 @@ window.onload = function () {
             let result = PARAMS.bubble.forEach(function (element) {
 
                 addPin(element[0], myMap);
-                element.distBeMe = calcCrow(element[0].lat,
-                    element[0].lng,
-                    pos.coords.latitude,
-                    pos.coords.longitude);
+                // element.distBeMe = calcCrow(element[0].lat,
+                //     element[0].lng,
+                //     pos.coords.latitude,
+                //     pos.coords.longitude);
             });
         }
     });

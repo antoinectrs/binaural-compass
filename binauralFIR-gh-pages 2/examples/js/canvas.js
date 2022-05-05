@@ -71,6 +71,6 @@ canvas.addEventListener("mousemove", function (e) {
  
   
   // console.log(isLerping(canvasX));
-  console.log(msg(canvasX));
+
 });
 }

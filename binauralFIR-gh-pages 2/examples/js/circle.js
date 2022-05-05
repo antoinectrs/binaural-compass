@@ -36,8 +36,8 @@ class Circle {
         // x, y, radius, startAngle, endAngle, antiClockwise = false by default
         ctx.beginPath()
         // ctx.strokeStyle = strokeColor
-        console.log(PARAMS.mouseTest.x);
-        ctx.arc(PARAMS.mouseTest.x, PARAMS.mouseTest.x, 300, 0, 2 * Math.PI, false) // full circle
+        console.log(PARAMS.mouseTest);
+        ctx.arc(PARAMS.mouseTest, PARAMS.mouseTest , 300, 0, 2 * Math.PI, false) // full circle
         // draw the path to screen
         ctx.fill()
         ctx.stroke()
@@ -45,6 +45,7 @@ class Circle {
     }
     convertToCanvas(value,threshold=0.1){
         this.distance =  mapRange(value, 0, threshold,0,canvas.width);
+        // this.msg(this.distance)
     }
     soundPoint(orientation,distance){
         binauralFIRNode.setPosition(orientation, 0, 1);
