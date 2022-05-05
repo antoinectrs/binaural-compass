@@ -8,19 +8,66 @@ function mapRange(value, a, b, c, d) {
   // then map it from (0..1) to (c..d) and return it
   return c + value * (d - c);
 }
-function degrees_to_radians(degrees)
-{
+function degrees_to_radians(degrees) {
   var pi = Math.PI;
-  return degrees * (pi/180);
+  return degrees * (pi / 180);
 }
-function minIs(array){
+function minIs(array) {
   return Math.min(...array);
 }
-function maxIs(array){
+function maxIs(array) {
   return Math.max(...array);
 }
 function mapArray(arr) {
   return arr.map(function (el) {
-      return el.sample.audio.currentTime;
+    return el.sample.audio.currentTime;
   });
 };
+
+function transition(index) {
+  console.log(index);
+  // index+=0.001
+  if (index < 1) {
+    return new Promise(resolve => { "none" })
+    //   requestAnimationFrame(transition);
+  } else {
+
+    // return new Promise(resolve => {isLerping('resolved')})
+  }
+}
+
+async function isLerping(value) {
+  // console.log(value);
+  let index = 0;
+  const result = await transition(index);
+
+  // console.log(result);
+  // expected output: "resolved"
+}
+
+function scaryClown(value, index) {
+  return new Promise(resolve => {
+
+    let lerpResult = 0
+
+    const draw = () => {
+      console.log(lerpResult);
+      if (lerpResult >= 1) {
+        resolve(value)
+      } else {
+        lerpResult += 0.1
+        requestAnimationFrame(() => draw());
+      }
+    }
+
+    draw()
+  });
+}
+
+
+async function msg(value) {
+
+  const msg = await scaryClown(value, index = 0);
+  console.log('Message:', msg);
+}
+

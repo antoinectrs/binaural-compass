@@ -69,5 +69,8 @@ canvas.addEventListener("mousemove", function (e) {
   var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas 
   var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  
   PARAMS.mouseTest = {x:canvasX, y:canvasY};
+  
+  // console.log(isLerping(canvasX));
+  console.log(msg(canvasX));
 });
 }
