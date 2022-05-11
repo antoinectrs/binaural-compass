@@ -21,7 +21,7 @@ function initMap(pos, lat, lon, zoom = 25) {
         ],
         addWaypoints: false,
         routeWhileDragging: false,
-        geocoder: L.Control.Geocoder.nominatim()
+        // geocoder: L.Control.Geocoder.nominatim()
     }).addTo(PARAMS.map);
     
    
@@ -34,7 +34,7 @@ function changeOrientation (myMap, value){
 function panMap(pos, myMap, lat, lon) {
     lat = pos.coords.latitude
     lon = pos.coords.longitude
-    // myMap.panTo(new L.LatLng(lat, lon));
+    myMap.panTo(new L.LatLng(lat, lon));
 
 
     document.getElementById("location").innerHTML = "lat : " + lat;
