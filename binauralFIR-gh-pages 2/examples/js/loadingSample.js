@@ -45,7 +45,7 @@ req.addEventListener('load', function (event) {
     createBufferFromData(req.response);
 });
 
-req.open('GET', `../examples/snd/urban/${this.path}.mp3`, true);
+req.open('GET', `./${this.path}.mp3`, true);
 req.send();
 }
 function hrtf(sampleRate){
