@@ -2,6 +2,7 @@
         font-family: monument-regular;
         src: url(./font/Mregular.otf);
     }
+
     @font-face {
         font-family: monument-bold;
         src: url(./font/Multrabold.otf);
@@ -9,11 +10,13 @@
 
     #defaultCanvas0 {
         /* filter: blur(150px)contrast(3); */
-        filter:blur(53px)contrast(5.1)saturate(0.6);
+        filter: blur(53px)contrast(5.1)saturate(0.6);
     }
-    body{
+
+    body {
         margin: 0;
     }
+
     input[type=range][orient=vertical] {
         writing-mode: bt-lr;
         /* IE */
@@ -24,6 +27,14 @@
         padding: 0 5px;
     }
 
+    #emoji__compass {
+        z-index: 10000;
+        width: 100%!important;
+        height: 100%!important;
+        background: radial-gradient(#005cff, white)!important;
+        position: fixed;
+    }
+
     .parent .case {
         /* border-bottom: solid 1px;
         border-right: solid 1px; */
@@ -32,9 +43,8 @@
     }
 
     .parent .case p {
-
         font-size: 3em;
-        font-family:monument-regular;
+        font-family: monument-regular;
         text-align: center;
         text-transform: capitalize;
         position: absolute;
@@ -48,10 +58,12 @@
         grid-column-gap: 0px;
         grid-row-gap: 0px;
     }
+
     .carte {
         background: #6b6bff;
         grid-area: 1 / 1 / 2 / 2;
     }
+
     .div1 {
         grid-area: 1 / 1 / 2 / 2;
     }
@@ -127,9 +139,11 @@
     #drum.on .color {
         background: #00d4ff
     }
+
     #bass.on .color {
         background: #0091ff
     }
+
     #lead.on .color {
         background: #0051ff
     }
@@ -149,7 +163,9 @@
         height: 100vh;
         filter: blur(100px)contrast(72.1)saturate(0.6);
     }
+
     /* MAP */
+
     #map {
         height: 100vh;
         width: 100vw;

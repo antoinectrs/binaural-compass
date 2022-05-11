@@ -20,6 +20,11 @@ window.onload = function () {
     document.querySelector('#bass').addEventListener('click', () => { PARAMS.points[1].sample.playSample(maxIs(mapArray(PARAMS.points))); });
     document.querySelector('#lead').addEventListener('click', () => { PARAMS.points[2].sample.playSample(maxIs(mapArray(PARAMS.points))) });
     document.querySelector('#drum').addEventListener('click', () => { PARAMS.points[0].sample.playSample(maxIs(mapArray(PARAMS.points))) });
+    let slide = document.querySelector("#slide")
+    slide.addEventListener("mousemove", function () {
+        console.log(slide.value);
+        myValue(slide.value);
+    }, false);
 
     PARAMS.points.forEach((point) => {
         point.sample.requestTrack();
@@ -71,7 +76,7 @@ window.onload = function () {
     clicClass(".active", "on")
 
     // --------- /DOM ----------
-    initCanvas('gameCanvas', PARAMS.points);
+    initCanvas('gameCanvas',myMap, PARAMS.points);
     function m(){
         return
     }

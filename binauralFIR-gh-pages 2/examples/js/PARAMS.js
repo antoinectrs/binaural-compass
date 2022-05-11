@@ -1,4 +1,5 @@
 let PARAMS = {
+    maps:null,
     myLocation: null,
     points:null,
     binauralFIRNode: null,

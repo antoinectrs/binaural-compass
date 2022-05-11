@@ -8,6 +8,10 @@
 </head>
 
 <body>
+    <div  style="position: fixed;z-index: 2000;">
+        <!-- <button onclick="L.Rotate._map.setBearing(75);" title="map.setBearing(75);">75</button> -->
+        <input id="slide" type="range" id="volume" name="volume" min="0" max="360">
+    </div>
     <div class="case carte" id="map">
     </div>
     <div class="parent">
@@ -79,10 +83,24 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-<script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>
+<!-- <script src="https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js"></script>; -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+<!-- Leaflet-Rotate -->
+<script src="https://unpkg.com/leaflet-rotate@0.1.4/dist/leaflet-rotate-src.js"></script>
+
+<!-- include some miscellaneous -->
+<script src="https://unpkg.com/leaflet-rotate@0.1.4/misc/route.js"></script>
+<script src="https://unpkg.com/leaflet-rotate@0.1.4/misc/places.js"></script>
+<script src="https://unpkg.com/leaflet-rotate@0.1.4/misc/loremIpsum.js"></script>
+<script src="https://unpkg.com/leaflet-rotate@0.1.4/lib/debug.js"></script>
 <!-- LIB -->
 <script src="./js/PARAMS.js"></script>
 
