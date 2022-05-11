@@ -1,11 +1,11 @@
-function initMap(pos, lat, lon, zoom = 20) {
+function initMap(pos, lat, lon, zoom = 25) {
     lat = pos.coords.latitude
     lon = pos.coords.longitude
     console.log(pos);
     PARAMS.map = L.map('map',{
         rotate: true,
         // bearing: 00,
-    }).setView([lat, lon], 20);
+    }).setView([lat, lon], zoom);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 20,
@@ -16,13 +16,14 @@ function initMap(pos, lat, lon, zoom = 20) {
     }).addTo(PARAMS.map);
     L.Routing.control({
         waypoints: [
-            L.latLng(pos.lat, pos.lng),
+            L.latLng(lat, lon),
             L.latLng(46.53720503291841, 6.591123563606234)
         ],
         addWaypoints: false,
         routeWhileDragging: false,
         geocoder: L.Control.Geocoder.nominatim()
     }).addTo(PARAMS.map);
+    
    
 
     return PARAMS.map
@@ -30,10 +31,10 @@ function initMap(pos, lat, lon, zoom = 20) {
 function changeOrientation (myMap, value){
     myMap.setBearing(value);
 }
-function panMap(pos, myMap, lat, lon, zoom = 20) {
+function panMap(pos, myMap, lat, lon) {
     lat = pos.coords.latitude
     lon = pos.coords.longitude
-    myMap.panTo(new L.LatLng(lat, lon));
+    // myMap.panTo(new L.LatLng(lat, lon));
 
 
     document.getElementById("location").innerHTML = "lat : " + lat;

@@ -166,12 +166,25 @@
 
     /* MAP */
 
+    .leaflet-layer {
+        opacity: 0.2 !important;
+    }
+
+    path.leaflet-interactive {
+        stroke: blue !important;
+        stroke-width: 62px;
+    }
+
+    path.leaflet-interactive:last-child {
+        display: none;
+    }
     #map {
+        filter: blur(35px) contrast(3.5);
         height: 100vh;
         width: 100vw;
         margin: 0;
         z-index: 1000;
-        pointer-events: none;
+        /* pointer-events: none; */
         /* opacity: 0.001; */
     }
 
