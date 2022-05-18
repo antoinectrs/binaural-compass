@@ -17,7 +17,7 @@ window.onload = function () {
             "space": new Space(2),
         }
     ];
-    document.querySelector('#bass').addEventListener('click', () => { PARAMS.points[1].sample.playSample(maxIs(mapArray(PARAMS.points))); });
+    document.querySelector('#bass').addEventListener('click', () => { PARAMS.points[1].sample.playSample(maxIs(mapArray(PARAMS.points))) });
     document.querySelector('#lead').addEventListener('click', () => { PARAMS.points[2].sample.playSample(maxIs(mapArray(PARAMS.points))) });
     document.querySelector('#drum').addEventListener('click', () => { PARAMS.points[0].sample.playSample(maxIs(mapArray(PARAMS.points))) });
     let slide = document.querySelector("#slide")
